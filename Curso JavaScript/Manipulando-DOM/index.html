@@ -1,46 +1,54 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Add Box App Javascript</title>
- 
-        <style>
-            .red-box {
-                width: 100px;
-                height: 100px;
-                display: flex;
-                flex-direction: row; 
-                background-color: #f00;   
-            }
-            
-        </style>
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Box App Javascript</title>
 
-        <button id="addBox">Adicionar Box</button>
-        <button id="removeBox">Remover Box</button>
-        <div id="boxContainer"></div>
-        <script>
-            document.getElementById("addBox").addEventListener('click', function(){
-                criarBox();
-            });
+  </head>
+  <body>
+    <button id="addBox">Adicionar Box</button>
+    <button id="removeBox">Remover Box</button>
 
-            document.getElementById("removeBox").addEventListener('click', function(){
-                removerBox();
-            });
-            
+    <div id="boxes"></div>
+    
+    <script>
+      var bntAddBoxElement = document.getElementById('addBox');
+      var btnRemoveBoxElement = document.getElementById('removeBox');
+      var boxesElement = document.getElementById('boxes');
 
-            function criarBox(){
-              var box = document.createElement('div');
-             box.setAttribute('class', 'red-box');
-             document.getElementById("boxContainer").style.
-                document.getElementById("boxContainer").appendChild(box);
-            }
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
 
-            function removerBox(){
-                var box =  document.getElementById("boxContainer");
-                box.parentNode.removeChild(box);
-            }
+      bntAddBoxElement.onclick = function(){
+        var box = document.createElement('div');
+        var tamanho = document.getElementsByTagName('div').length;
 
-        </script>
-    </body>
+        box.setAttribute("id","box_" + tamanho);
+
+        box.style.width = '100px';
+        box.style.height = '100px';
+        box.style.backgroundColor = '#F00';
+
+        box.onmouseover = function(){
+          box.style.backgroundColor = getRandomColor();
+        }
+
+        boxesElement.appendChild(box);
+
+      };
+
+      btnRemoveBoxElement.onclick = function(){
+        var tamanho = document.getElementsByTagName('div').length - 1;
+        var boxToRemove = document.getElementById('box_' + tamanho);
+
+        boxToRemove.parentNode.removeChild(boxToRemove);
+      }
+      
+    </script>
+  </body>
 </html>
