@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>check-List</title>
+
+    <body><h1 align="center">Tarefas a fazer</h1>
+      <input type="text" id="tarefa"></input>
+      <button onclick="adicionarTarefa(inputElement.value)">Adicionar</button>
+      <ul></ul>
+
+      <script>
+
+        var listTarefaElement = document.querySelector('ul');
+        var inputElement = document.querySelector('input');
+
+
+            function adicionarTarefa(tarefa){
+              var liElement = document.createElement('li');
+              var textElement = document.createTextNode(tarefa);
+              
+              liElement.appendChild(textElement);
+              listTarefaElement.appendChild(liElement);
+      
+
+              inputElement.value = "";
+            }
+
+
+      </script>
+
+    </body>
+  </head>
+</html>
